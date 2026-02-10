@@ -1,18 +1,32 @@
-def generate_ngrams(text, n):
+# Python program to create Word and Character N-grams
+
+def word_ngrams(text, n):
     words = text.split()
-    ngrams_list = []
+    grams = []
 
     for i in range(len(words) - n + 1):
-        ngram = words[i:i+n]
-        ngrams_list.append(ngram)
+        grams.append(tuple(words[i:i + n]))
 
-    return ngrams_list
+    return grams
 
-text = input("Enter the sentence: ")
-n = int(input("Enter the value of N: "))
 
-ngrams = generate_ngrams(text, n)
+def char_ngrams(text, n):
+    grams = []
 
-print("\nGenerated N-grams are:")
-for gram in ngrams:
+    for i in range(len(text) - n + 1):
+        grams.append(text[i:i + n])
+
+    return grams
+
+
+# ---- Main Program ----
+text = input("Enter a sentence: ")
+n = int(input("Enter value of N: "))
+
+print("\nWord N-grams:")
+for gram in word_ngrams(text, n):
+    print(gram)
+
+print("\nCharacter N-grams:")
+for gram in char_ngrams(text, n):
     print(gram)
